@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Courgette", cursive;
+  color: black;
+}
+
+.parent-container {
+  background-color: black;
+}
+
+.header {
+  font-size: 1.5rem;
+  margin: 20px;
+  color: white;
+}
+
+.middle-div {
+  position: fixed;
+  width: 100%;
+  top: 20px;
+  background: black;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.button {
+  border: solid 2px white;
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "Cookie", cursive;
+  color: black;
+  padding: 5px 25px;
+  background: white;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #331e03),
+    color-stop(100%, #ff8c00)
+  );
+  background: -moz-linear-gradient(top, #331e03 0%, #ff8c00 100%);
+  background: -webkit-linear-gradient(top, #331e03 0%, #ff8c00 100%);
+  background: -o-linear-gradient(top, #331e03 0%, #ff8c00 100%);
+  background: -ms-linear-gradient(top, #331e03 0%, #ff8c00 100%);
+  background: linear-gradient(to bottom, #331e03 0%, #ff8c00 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorstr="#331e03",
+      endColorstr="#ff8c00",
+      GradientType=0
+    );
+  background-size: auto 200%;
+  background-position: 0 100%;
+  transition: background-position 0.5s;
+  cursor: pointer;
+  align-content: center;
+}
+
+.button:hover {
+  background-position: 0 0;
+}
+
+.blockquote {
+  background: white;
+  border-left: 10px solid #b04607;
+  margin: 1.5em 10px;
+  padding: 1em 20px;
+  quotes: "\201C""\201D""\2018""\2019";
+  border-radius: 15px;
+  width: 500px;
+}
+
+.blockquote:before {
+  color: #b04607;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+.blockquote:after {
+  color: #b04607;
+  content: close-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+.blockquote p {
+  display: inline;
+  font-size: 30px;
+  font-family: "Cookie", cursive;
+}
+
+h2 {
+  text-align: center;
+}
+
+h2 span {
+  color: #331e03;
+  text-decoration: underline;
+}
+
+h2 span:hover {
+  color: bisque;
+}
+
+h2 p {
+  color: bisque;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.favorites {
+  background: #7f7f7f;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5%;
+  background-color: red;
+  margin-top: 380px;
+  border-radius: 15px;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 80%;
+}
+
+.fav-list {
+  color: bisque;
+}
