@@ -60,11 +60,23 @@ export default class QuoteGenerator extends Component {
 
   render() {
     const { randomQuote } = this.state;
+    // const borderColor = "#b04607";
+    var hue =
+      "rgb(" +
+      Math.floor(Math.random() * 256) +
+      "," +
+      Math.floor(Math.random() * 256) +
+      "," +
+      Math.floor(Math.random() * 256) +
+      ")";
 
     return (
       <div>
         <div className="middle-div">
-          <div className="blockquote">
+          <div style={{ color: "white", fontSize: 30 }}>
+            Random Quote Generator
+          </div>
+          <div style={{ border: `10px solid ${hue}` }} className="blockquote">
             <p>{randomQuote.quoteText} </p>
             <br />
             <br />
@@ -81,8 +93,6 @@ export default class QuoteGenerator extends Component {
         </div>
 
         <div>
-          <br />
-
           <FavoritesList
             favoriteQuotes={this.state.favoriteQuotes}
             delete={this.deleteFromFavorites}

@@ -6,9 +6,7 @@ export default class FavoriteButton extends Component {
     return (
       <div>
         <br />
-        <button className={"button"} onClick={() => this.props.add()}>
-          Add To Favorites
-        </button>
+        <button className="fav-btn" onClick={() => this.props.add()} />
         <br />
       </div>
     );

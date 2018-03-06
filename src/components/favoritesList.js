@@ -31,8 +31,8 @@ export default class FavoritesList extends Component {
 
   render() {
     let favorites = this.props.favoriteQuotes.map((element, index) => (
-      <div>
-        <p onClick={() => this.props.delete(index)}>{element.quoteText}</p>
+      <div className="fav-item" onClick={() => this.props.delete(index)}>
+        <p>{element.quoteText}</p>
         <p>--{element.quoteAuthor}</p>
       </div>
     ));
