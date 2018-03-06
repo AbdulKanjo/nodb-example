@@ -83,7 +83,11 @@ export default class QuoteGenerator extends Component {
             <p> --{randomQuote.quoteAuthor} </p>
           </div>
           <div>
-            <button className={"button"} onClick={() => this.changeQuote()}>
+            <button
+              style={{ border: `3px solid ${hue}` }}
+              className="button"
+              onClick={() => this.changeQuote()}
+            >
               Get A New Quote
             </button>
           </div>

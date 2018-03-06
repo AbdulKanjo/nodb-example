@@ -39,7 +39,10 @@ export default class FavoritesList extends Component {
 
     return (
       <div className="favorites">
-        <h2 onClick={() => this.updateFavListTitle()}>
+        <h2
+          style={{ cursor: "pointer" }}
+          onClick={() => this.updateFavListTitle()}
+        >
           {" "}
           <span>{this.state.title}</span>
           <br />{" "}
