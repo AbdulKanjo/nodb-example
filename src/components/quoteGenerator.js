@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
-import FavoriteButton from "./favoriteButton";
-import FavoritesList from "./favoritesList";
+import swal from "sweetalert2";
+import FavoriteButton from "./FavoriteButton";
+import FavoritesList from "./FavoritesList";
 
 export default class QuoteGenerator extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      randomQuote: {},
+      quote: {},
       favoriteQuotes: []
     };
 
@@ -18,40 +19,42 @@ export default class QuoteGenerator extends Component {
 
   componentDidMount() {
     axios
-      .get("/api/test")
+      .get("/api/favorites")
       .then(response => {
-        this.setState({ randomQuote: response.data });
+        console.log(response.data);
+
+        this.setState({ quote: response.data });
       })
       .catch(error => console.log(error));
   }
 
   addToFavs() {
-    let { randomQuote } = this.state;
+    let { quote } = this.state;
     if (
       JSON.stringify(this.state.favoriteQuotes).includes(
-        JSON.stringify(this.state.randomQuote)
+        JSON.stringify(this.state.quote)
       )
     ) {
-      alert("This quote is already in your favorites");
+      swal("", "This quote is already in your favorites!", "error");
     } else {
       axios
-        .post("/api/favorites", { randomQuote })
+        .post("/api/favorites", { quote })
         .then(response => this.setState({ favoriteQuotes: response.data }));
     }
   }
 
   changeQuote() {
     axios
-      .get("/api/test")
+      .get("/api/favorites")
       .then(response => {
-        this.setState({ randomQuote: response.data });
+        this.setState({ quote: response.data });
       })
-      .catch(error => console.log(error));
+      .catch(() => this.changeQuote());
   }
 
   deleteFromFavorites(quote) {
     axios
-      .delete(`/api/delete/${quote}`)
+      .delete(`/api/favorites/${quote}`)
       .then(response => {
         this.setState({ favoriteQuotes: response.data });
       })
@@ -59,7 +62,7 @@ export default class QuoteGenerator extends Component {
   }
 
   render() {
-    const { randomQuote } = this.state;
+    const { quote } = this.state;
     // const borderColor = "#b04607";
     var hue =
       "rgb(" +
@@ -77,10 +80,10 @@ export default class QuoteGenerator extends Component {
             Random Quote Generator
           </div>
           <div style={{ border: `10px solid ${hue}` }} className="blockquote">
-            <p>{randomQuote.quoteText} </p>
+            <p>{quote.quoteText} </p>
             <br />
             <br />
-            <p> --{randomQuote.quoteAuthor} </p>
+            <p> --{quote.quoteAuthor} </p>
           </div>
           <div>
             <button

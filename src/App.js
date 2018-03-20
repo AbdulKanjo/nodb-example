@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./styling/App.css";
-import QuoteGenerator from "./components/quoteGenerator";
-import Header from "./components/header";
+import QuoteGenerator from "./components/QuoteGenerator";
 
 class App extends Component {
   render() {

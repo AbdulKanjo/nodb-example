@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import swal from "sweetalert2";
 
 export default class FavoritesList extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ export default class FavoritesList extends Component {
       title: "My Saved Quotes"
     };
 
-    this.updateFavListTitle = this.updateFavListTitle.bind(this);
+    this.updateTitle = this.updateTitle.bind(this);
   }
 
   componentDidMount() {
@@ -19,14 +20,19 @@ export default class FavoritesList extends Component {
       .catch(error => console.log(error));
   }
 
-  updateFavListTitle() {
-    let update = prompt("Please update your favorite list name");
-    axios
-      .put(`/api/edit/${update}`)
-      .then(response => {
-        this.setState({ title: response.data });
-      })
-      .catch(error => console.log(error));
+  updateTitle() {
+    swal({
+      text: "Enter new title here:",
+      input: "text"
+    }).then(result => {
+      console.log(result.value);
+      axios
+        .put(`/api/favorites/${result.value}`)
+        .then(response => this.setState({ title: response.data }))
+        .catch(error => console.log(error));
+    });
+
+    //  prompt("Please update your favorite list name");
   }
 
   render() {
@@ -39,13 +45,9 @@ export default class FavoritesList extends Component {
 
     return (
       <div className="favorites">
-        <h2
-          style={{ cursor: "pointer" }}
-          onClick={() => this.updateFavListTitle()}
-        >
-          {" "}
+        <h2 style={{ cursor: "pointer" }} onClick={() => this.updateTitle()}>
           <span>{this.state.title}</span>
-          <br />{" "}
+          <br />
           <p>
             (Click on title to change list name) (Click on a saved quote to
             delete from list)
