@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./styling/App.css";
-import QuoteGenerator from "./components/QuoteGenerator";
+import QuoteGenerator from "./QuoteGenerator/QuoteGenerator";
+import "./App.css";
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
       <div className="parent-container">
@@ -11,5 +11,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

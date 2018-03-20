@@ -1,0 +1,62 @@
+.quote-container {
+  position: fixed;
+  width: 90%;
+  top: 0;
+  padding: 2vh 5vw;
+  background: rgb(24, 24, 24);
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 45vh;
+  min-height: 45vh;
+  z-index: 1;
+}
+
+.btn-box {
+  display: flex;
+  width: 270px;
+  justify-content: space-between;
+}
+
+.blockquote {
+  background: floralwhite;
+  margin: 1.5em 10px;
+  padding: 1em 20px;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+  border-radius: 15px;
+  min-height: 22vh;
+  width: 80%;
+}
+
+.blockquote:before {
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+.blockquote:after {
+  content: close-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+.blockquote p {
+  display: inline;
+  font-size: 28px;
+  font-family: "Cookie", cursive;
+}
+
+.button {
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "Cookie", cursive;
+  padding: 5px 25px;
+  background: floralwhite;
+  cursor: pointer;
+  outline: none;
+}

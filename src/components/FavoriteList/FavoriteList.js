@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import swal from "sweetalert2";
+import "./FavoriteList.css";
 
 export default class FavoritesList extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       favoritesList: [],
       title: "My Saved Quotes"
@@ -25,36 +27,32 @@ export default class FavoritesList extends Component {
       text: "Enter new title here:",
       input: "text"
     }).then(result => {
-      console.log(result.value);
       axios
         .put(`/api/favorites/${result.value}`)
-        .then(response => this.setState({ title: response.data }))
+        .then(
+          response =>
+            response.data !== "undefined"
+              ? this.setState({ title: response.data })
+              : this.setState({ title: this.state.title })
+        )
         .catch(error => console.log(error));
     });
-
-    //  prompt("Please update your favorite list name");
   }
 
   render() {
-    let favorites = this.props.favoriteQuotes.map((element, index) => (
-      <div className="fav-item" onClick={() => this.props.delete(index)}>
-        <p>{element.quoteText}</p>
-        <p>--{element.quoteAuthor}</p>
+    let favorites = this.props.favoriteQuotes.map((e, i) => (
+      <div key={i} className="fav-item" onClick={() => this.props.delete(i)}>
+        <p>{e.quoteText}</p>
+        <p>--{e.quoteAuthor}</p>
       </div>
     ));
 
     return (
       <div className="favorites">
-        <h2 style={{ cursor: "pointer" }} onClick={() => this.updateTitle()}>
-          <span>{this.state.title}</span>
-          <br />
-          <p>
-            (Click on title to change list name) (Click on a saved quote to
-            delete from list)
-          </p>
-        </h2>
-
-        <div className="fav-list">{favorites}</div>
+        <div className="title" onClick={() => this.updateTitle()}>
+          <div>{this.state.title}</div>
+        </div>
+        <div>{favorites}</div>
       </div>
     );
   }

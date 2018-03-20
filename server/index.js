@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Restful endpoints which will direct the code into your controller.
+app.get("/api/favorites/quote", mainControl.getQuote);
 app.get("/api/favorites", mainControl.getFavorites);
 app.delete("/api/favorites/:id", mainControl.deleteFavorite);
 app.put("/api/favorites/:id", mainControl.updateTitle);

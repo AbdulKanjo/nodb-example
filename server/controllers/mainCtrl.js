@@ -8,14 +8,13 @@ let title = "My Saved Quotes";
 
 // Remove selected quote from favorites array and return remaining favorites to front-end.
 const deleteFavorite = (req, res, next) => {
-  const { id } = req.params;
-  favorites.splice(id, 1);
+  favorites.splice(req.params.id, 1);
   res.status(200).json(favorites);
 };
 
 // Requests for data are recieved here. The server will either return the requested information or
 // return a 404 "Not Found" with custom message if data does not exist.
-const getFavorites = (req, res, next) => {
+const getQuote = (req, res, next) => {
   axios
     .get(`${baseUrl}?method=getQuote&format=json&lang=en`)
     .then(
@@ -24,12 +23,16 @@ const getFavorites = (req, res, next) => {
           ? res.status(200).json(response.data)
           : res.status(404).send("No data found")
     )
-    .catch(error => console.log(error));
+    .catch(error => error);
+};
+
+const getFavorites = (req, res, next) => {
+  res.status(200).json(favorites);
 };
 
 // Add a new favorite onto the end of the favorites array.
 const addFavorite = (req, res, next) => {
-  favorites.push(req.body.randomQuote);
+  favorites.push(req.body.quote);
   res.status(200).json(favorites);
 };
 
@@ -40,6 +43,7 @@ const updateTitle = (req, res, next) => {
 };
 
 module.exports = {
+  getQuote,
   deleteFavorite,
   getFavorites,
   addFavorite,
