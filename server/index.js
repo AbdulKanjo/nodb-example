@@ -18,13 +18,15 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Restful endpoints which will direct the code into your controller.
+//  (3) Notice that the type matches (get) and the url also matches ("/api/favorites/quote"). The endpoint then specifies that       the handling of the request will be done with the method getQuote found within the server controller. Step 4 is located at       server/controllers/mainCtrl.js on line 17.
 app.get("/api/favorites/quote", mainControl.getQuote);
 app.get("/api/favorites", mainControl.getFavorites);
-app.delete("/api/favorites/:id", mainControl.deleteFavorite);
+app.delete("/api/favorites/:quote", mainControl.deleteFavorite);
 app.put("/api/favorites/:id", mainControl.updateTitle);
 app.post("/api/favorites", mainControl.addFavorite);
 
 // Finish the server with the listen method. Console.log short message with port.
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`);
+  console.log("Listening on port: " + port);
 });

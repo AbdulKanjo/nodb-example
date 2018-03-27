@@ -31,9 +31,7 @@ export default class FavoritesList extends Component {
         .put(`/api/favorites/${result.value}`)
         .then(
           response =>
-            response.data !== "undefined"
-              ? this.setState({ title: response.data })
-              : this.setState({ title: this.state.title })
+            response.data ? this.setState({ title: response.data }) : ""
         )
         .catch(error => console.log(error));
     });

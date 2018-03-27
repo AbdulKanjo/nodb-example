@@ -20,14 +20,17 @@ export default class QuoteGenerator extends Component {
   }
 
   componentDidMount() {
+    // (1) ComponentDidMount fires off automatically after rendering because it is a component lifecycle hook. NewQuote is then invoked executing the method on line 29 -->.
     this.newQuote();
     this.getFavorites();
   }
 
   // Get a new random quote.
+  // (2) The newQuote method then fires off an axios request with url "/api/favorites/quote". This url must match the type (get, put, post, delete) and the url found on the server endpoint. You can find step 3 in server/index.js line 21 -->
   newQuote() {
     axios
       .get("/api/favorites/quote")
+      // (5) This is where our front-end receives the requested data from the server. Console.log your response to view the format of your data, then set the data into state. The final step is found on line 79 -->
       .then(response => {
         this.setState({ quote: response.data });
         this.setState({
@@ -73,6 +76,7 @@ export default class QuoteGenerator extends Component {
           <div style={{ color: "white", fontSize: 30 }}>
             Random Quote Generator
           </div>
+          {/* (6) Finally, the data is retrieved from state and displayed through JSX */}
           <div style={{ border: `10px solid ${color}` }} className="blockquote">
             <p>{quote.quoteText} </p>
             <br />
